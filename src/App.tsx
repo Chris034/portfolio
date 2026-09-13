@@ -47,7 +47,7 @@ const Icon = ({ name }: { name: 'arrow' | 'github' | 'linkedin' | 'moon' | 'sun'
 const skills = [
   {
     label: 'Application',
-    items: ['C#', '.NET', 'Dynamics 365', 'Power Platform', 'Java'],
+    items: ['C#', '.NET', 'Dynamics 365', 'Power Platform', 'Java', 'AI-Forward Software Development'],
   },
   {
     label: 'Interface',
