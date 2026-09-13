@@ -74,7 +74,7 @@ const testimonials = [
   {
     attribution: 'Client Project Manager, John Deere',
     quote:
-      'Just reaching out quickly to express my thanks to Christian and his teammate for the [Project] work they have been doing. I know I probably tell them “Thanks” for the great work just about every day, but our dealers have also been providing great feedback on the new functionality. The dealers have been jumping in to use it right away, and it’s been great to work with them on some quick wins and enhancement feedback. I’ve also really appreciated how Christian has been willing to demonstrate the functionality to dealers and take questions live. On top of that, he’s done a great job of suggesting improvements and keeping track of new work items around this functionality that I’ve prioritized immediately. It’s been super easy to work with him, brainstorm quick fixes, and just let him focus and get after it.',
+      'Just reaching out quickly to express my thanks to Christian for his work on [Project]. I know I probably tell him “Thanks” for the great work just about every day, but our dealers have also been providing great feedback on the new functionality. The dealers have been jumping in to use it right away, and it’s been great to work with them on some quick wins and enhancement feedback. I’ve also really appreciated how Christian has been willing to demonstrate the functionality to dealers himself and take questions live. On top of that, he’s done a great job of suggesting improvements and keeping track of new work items around this functionality that I’ve prioritized immediately. It’s been super easy to work with him, brainstorm quick fixes, and let him focus and get after it.',
   },
   {
     attribution: 'Engagement Lead',
