@@ -49,7 +49,7 @@ const projects = [
     title: 'Enterprise operations platform',
     client: 'John Deere · Staff augmentation',
     description:
-      'Full-stack delivery for a multi-tenant Azure application spanning 12+ legal entities, 100+ locations, and thousands of daily users. Built integrations and invoicing and time-tracking interfaces, then led the flagship UI redesign from architecture and task decomposition through delivery.',
+      'Full-stack delivery for a multi-tenant Azure application spanning 12+ legal entities, 100+ locations, and thousands of daily users. Built integrations and invoicing and time-tracking interfaces. I have led multiple flagship UI redesigns from architecture and task decomposition through delivery and maintenance.',
     tags: ['Full-stack', 'React', 'Azure', 'Architecture'],
   },
   {
@@ -57,7 +57,7 @@ const projects = [
     title: 'Global scheduling experience',
     client: 'Microsoft · Staff augmentation',
     description:
-      'Redesigned and refactored the Field Service Schedule Board in React, with accessibility and localization built into an experience used worldwide.',
+      'Redesigned and refactored the Field Service Schedule Board in React, with accessibility and localization built into an experience used worldwide across Microsoft Field Service users.',
     tags: ['React', 'Accessibility', 'Localization', 'Dynamics 365'],
   },
   {
@@ -65,8 +65,36 @@ const projects = [
     title: 'Forecasting application',
     client: 'Hitachi Solutions · Internal IP',
     description:
-      'Delivered a React forecasting product with role-based experiences, chat, dashboards, spreadsheet-like data entry, and configuration tooling—finishing ahead of schedule despite reduced capacity.',
+      'Delivered a React forecasting product with role-based experiences, chat, dashboards, spreadsheet-like data entry, and configuration tooling—finishing ahead of schedule despite reduced capacity. This forecaster is now used in our entire sales estimation process and is integral to our successful delivery of multiple enterprise engagements.',
     tags: ['React', 'Product UI', 'Dashboards', 'Data entry'],
+  },
+]
+
+const testimonials = [
+  {
+    attribution: 'Client Project Manager, John Deere',
+    quote:
+      'Just reaching out quickly to express my thanks to Christian and his teammate for the [Project] work they have been doing. I know I probably tell them “Thanks” for the great work just about every day, but our dealers have also been providing great feedback on the new functionality. The dealers have been jumping in to use it right away, and it’s been great to work with them on some quick wins and enhancement feedback. I’ve also really appreciated how Christian has been willing to demonstrate the functionality to dealers and take questions live. On top of that, he’s done a great job of suggesting improvements and keeping track of new work items around this functionality that I’ve prioritized immediately. It’s been super easy to work with him, brainstorm quick fixes, and just let him focus and get after it.',
+  },
+  {
+    attribution: 'Engagement Lead',
+    quote:
+      'Christian has been absolutely crushing it on [Client StartUp]. We had our go-live last night. It was a very late night, and he stuck it out to help resolve some data issues and validate that everything came over correctly. I don’t know what the process looks like for a spot bonus, but if there’s a way I can formally recommend him for one, or if that needs to come from you, I think it would be well deserved.',
+  },
+  {
+    attribution: 'Functional Architect',
+    quote:
+      'Christian joined the [Client] project as an Associate Developer and quickly proved himself to be a quick learner and very easy to work with. He listens, he understands, and he gets it 95% right on the first try. I have been so impressed by him and would gladly work with him on any future projects. Five stars in my book.',
+  },
+  {
+    attribution: 'Senior Developer',
+    quote:
+      'Christian’s attention to detail and commitment to quality were instrumental in identifying and resolving potential issues before they could impact [External API] integrations at John Deere.',
+  },
+  {
+    attribution: 'Client Scrum Master',
+    quote:
+      'Christian was extremely dependable on our [Client] project. He was a resource who would finish the work he committed to—oftentimes early—and require very little in the way of reminders, such as updating hours. On top of his excellent drive and collaboration, I enjoyed getting to know Christian more over the project on a personal level and thought he brought very good energy to the overall team dynamic. Great work, Christian!',
   },
 ]
 
@@ -86,6 +114,7 @@ function App() {
           <a href="#profile">Profile</a>
           <a href="#experience">Experience</a>
           <a href="#work">Work</a>
+          <a href="#testimonials">Testimonials</a>
           <a href="#credentials">Credentials</a>
         </nav>
         <a
@@ -206,6 +235,9 @@ function App() {
                   interfaces in React, TypeScript, JavaScript, CSS, and HTML. Build API
                   integrations with Azure Functions, Queues, and Key Vault while
                   collaborating across client and agile teams.
+
+                  Consistently develivered excellence across serveral enterprise and
+                  product engagements explimifying adaptability, technical depth, and a strong customer-service focus.
                 </p>
                 <div className="role-note">
                   <span aria-hidden="true">✦</span>
@@ -217,7 +249,7 @@ function App() {
             <article className="role">
               <div className="role-meta"><p>Sep 2021 — Apr 2022</p></div>
               <div className="role-body">
-                <p className="company">Outlaw Digital</p>
+                <p className="company">Loblaw Digital</p>
                 <h3>Front End Developer</h3>
                 <p>
                   Maintained a reusable React component library with JavaScript, HTML,
@@ -268,9 +300,36 @@ function App() {
           </div>
         </section>
 
+        <section className="testimonials section-shell section-rule" id="testimonials">
+          <div className="section-heading">
+            <p className="section-index">05 / Testimonials</p>
+            <h2>Trusted when the<br />work matters.</h2>
+            <p className="section-intro">
+              Feedback from client and delivery partners across enterprise engagements.
+            </p>
+          </div>
+          <div className="testimonial-grid">
+            {testimonials.map((testimonial, index) => (
+              <figure
+                className={`testimonial-card${index === 0 ? ' testimonial-featured' : ''}`}
+                key={testimonial.attribution}
+              >
+                <span className="quote-mark" aria-hidden="true">“</span>
+                <blockquote>
+                  <p>{testimonial.quote}</p>
+                </blockquote>
+                <figcaption>
+                  <span aria-hidden="true" />
+                  {testimonial.attribution}
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </section>
+
         <section className="credentials section-shell section-rule" id="credentials">
           <div className="section-heading">
-            <p className="section-index">05 / Credentials</p>
+            <p className="section-index">06 / Credentials</p>
             <h2>Continual learning,<br />grounded in practice.</h2>
           </div>
           <div className="credential-content">
