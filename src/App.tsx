@@ -1,6 +1,9 @@
+import { useEffect, useState } from 'react'
 import './App.css'
 
-const Icon = ({ name }: { name: 'arrow' | 'github' | 'linkedin' }) => {
+type Theme = 'light' | 'dark'
+
+const Icon = ({ name }: { name: 'arrow' | 'github' | 'linkedin' | 'moon' | 'sun' }) => {
   if (name === 'github') {
     return (
       <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -13,6 +16,23 @@ const Icon = ({ name }: { name: 'arrow' | 'github' | 'linkedin' }) => {
     return (
       <svg viewBox="0 0 24 24" aria-hidden="true">
         <path d="M6.5 8.2H3.2V19H6.5V8.2ZM4.85 3a1.94 1.94 0 1 0 0 3.88 1.94 1.94 0 0 0 0-3.88ZM19.8 12.82c0-3.25-1.73-4.76-4.04-4.76a3.5 3.5 0 0 0-3.18 1.75V8.2H9.27V19h3.31v-5.35c0-1.41.27-2.78 2.02-2.78 1.72 0 1.74 1.61 1.74 2.87V19h3.31l.15-6.18Z" />
+      </svg>
+    )
+  }
+
+  if (name === 'moon') {
+    return (
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M20.1 15.4A8.5 8.5 0 0 1 8.6 3.9 8.5 8.5 0 1 0 20.1 15.4Z" />
+      </svg>
+    )
+  }
+
+  if (name === 'sun') {
+    return (
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="3.5" />
+        <path d="M12 2v2.2M12 19.8V22M4.9 4.9l1.6 1.6m11 11 1.6 1.6M2 12h2.2M19.8 12H22M4.9 19.1l1.6-1.6m11-11 1.6-1.6" />
       </svg>
     )
   }
@@ -99,6 +119,24 @@ const testimonials = [
 ]
 
 function App() {
+  const [theme, setTheme] = useState<Theme>(() => {
+    const savedTheme = window.localStorage.getItem('portfolio-theme')
+
+    if (savedTheme === 'light' || savedTheme === 'dark') {
+      return savedTheme
+    }
+
+    return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
+  })
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme
+    document.documentElement.style.colorScheme = theme
+    window.localStorage.setItem('portfolio-theme', theme)
+  }, [theme])
+
+  const nextTheme = theme === 'dark' ? 'light' : 'dark'
+
   return (
     <>
       <a className="skip-link" href="#main">
@@ -117,15 +155,26 @@ function App() {
           <a href="#testimonials">Testimonials</a>
           <a href="#credentials">Credentials</a>
         </nav>
-        <a
-          className="header-social"
-          href="https://github.com/Chris034"
-          target="_blank"
-          rel="noreferrer"
-          aria-label="View Christian Sarran on GitHub (opens in a new tab)"
-        >
-          <Icon name="github" />
-        </a>
+        <div className="header-actions">
+          <button
+            className="theme-toggle"
+            type="button"
+            aria-label={`Switch to ${nextTheme} mode`}
+            title={`Switch to ${nextTheme} mode`}
+            onClick={() => setTheme(nextTheme)}
+          >
+            <Icon name={theme === 'dark' ? 'sun' : 'moon'} />
+          </button>
+          <a
+            className="header-social"
+            href="https://github.com/Chris034"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="View Christian Sarran on GitHub (opens in a new tab)"
+          >
+            <Icon name="github" />
+          </a>
+        </div>
       </header>
 
       <main id="main">
