@@ -145,7 +145,6 @@ function App() {
 
       <header className="site-header">
         <a className="brand" href="#top" aria-label="Christian Sarran, home">
-          <span className="brand-mark" aria-hidden="true">CS</span>
           <span>Christian Sarran</span>
         </a>
         <nav aria-label="Primary navigation">

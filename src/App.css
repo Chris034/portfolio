@@ -1,7 +1,7 @@
 :root {
   --ink: #f7f8ff;
-  --muted: #a6abc0;
-  --dim: #72778f;
+  --muted: #b4b9cc;
+  --dim: #9298ae;
   --surface: #070812;
   --surface-2: rgba(20, 22, 40, 0.72);
   --surface-3: rgba(28, 31, 54, 0.68);
@@ -17,8 +17,8 @@
 
 [data-theme="light"] {
   --ink: #161827;
-  --muted: #555b70;
-  --dim: #72788d;
+  --muted: #4e5468;
+  --dim: #62697e;
   --surface: #f5f7ff;
   --surface-2: rgba(255, 255, 255, 0.72);
   --surface-3: rgba(244, 246, 255, 0.84);
@@ -150,20 +150,6 @@ button {
   font-size: 0.84rem;
   font-weight: 650;
   letter-spacing: 0.02em;
-}
-
-.brand-mark {
-  display: grid;
-  width: 34px;
-  height: 34px;
-  place-items: center;
-  border: 1px solid rgba(125, 211, 252, 0.5);
-  border-radius: 10px;
-  background: linear-gradient(145deg, rgba(125, 211, 252, 0.16), rgba(167, 139, 250, 0.12));
-  color: var(--accent);
-  font-family: "SFMono-Regular", Consolas, monospace;
-  font-size: 0.7rem;
-  letter-spacing: -0.05em;
 }
 
 nav {
@@ -461,7 +447,7 @@ h1 span {
   grid-template-columns: auto 1fr auto;
   align-items: center;
   gap: 0.75rem;
-  color: #84918d;
+  color: var(--dim);
   font-family: "SFMono-Regular", Consolas, monospace;
   font-size: 0.65rem;
   letter-spacing: 0.08em;
@@ -505,7 +491,7 @@ h1 span {
 
 .section-index {
   margin-bottom: 1.75rem;
-  color: #74817d;
+  color: var(--dim);
 }
 
 .section-heading h2,
@@ -581,7 +567,7 @@ footer h2 {
   padding: 0.3rem 0.58rem;
   border: 1px solid var(--line);
   border-radius: 999px;
-  color: #aeb8b5;
+  color: var(--muted);
   font-family: "SFMono-Regular", Consolas, monospace;
   font-size: 0.68rem;
 }
@@ -623,7 +609,7 @@ footer h2 {
 
 .role-meta p {
   margin-bottom: 0.7rem;
-  color: #7f8a87;
+  color: var(--dim);
   font-family: "SFMono-Regular", Consolas, monospace;
   font-size: 0.69rem;
   letter-spacing: 0.03em;
@@ -743,7 +729,8 @@ footer h2 {
 }
 
 .project-number {
-  color: rgba(167, 139, 250, 0.62);
+  color: var(--accent-2);
+  opacity: 0.78;
   font-family: "SFMono-Regular", Consolas, monospace;
   font-size: clamp(2.5rem, 5vw, 5rem);
   line-height: 1;
@@ -1017,7 +1004,7 @@ footer h2 {
   margin-top: 7rem;
   padding-top: 1.5rem;
   border-top: 1px solid var(--line);
-  color: #68726f;
+  color: var(--dim);
   font-size: 0.73rem;
 }
 
@@ -1026,7 +1013,7 @@ footer h2 {
 }
 
 .footer-bottom a {
-  color: #aeb8b5;
+  color: var(--muted);
 }
 
 .reveal {
@@ -1117,10 +1104,6 @@ footer h2 {
     min-height: 60px;
     margin-top: 0.6rem;
     border-radius: 15px;
-  }
-
-  .brand > span:last-child {
-    display: none;
   }
 
   h1 {
