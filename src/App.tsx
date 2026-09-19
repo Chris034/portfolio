@@ -3,6 +3,23 @@ import './App.css'
 
 type Theme = 'light' | 'dark'
 
+type Project = {
+  number: string
+  title: string
+  client: string
+  description: string
+  tags: string[]
+  url?: string
+  repositoryPreview?: boolean
+  image?: {
+    src: string
+    alt: string
+    caption: string
+    sourceUrl?: string
+    licenseUrl?: string
+  }
+}
+
 const Icon = ({ name }: { name: 'arrow' | 'github' | 'linkedin' | 'moon' | 'sun' }) => {
   if (name === 'github') {
     return (
@@ -23,7 +40,7 @@ const Icon = ({ name }: { name: 'arrow' | 'github' | 'linkedin' | 'moon' | 'sun'
   if (name === 'moon') {
     return (
       <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M20.1 15.4A8.5 8.5 0 0 1 8.6 3.9 8.5 8.5 0 1 0 20.1 15.4Z" />
+        <path d="M20.1 15.4A8.5 8.5 0 1 1 8.6 3.9 8.5 8.5 0 0 0 20.1 15.4Z" />
       </svg>
     )
   }
@@ -46,47 +63,176 @@ const Icon = ({ name }: { name: 'arrow' | 'github' | 'linkedin' | 'moon' | 'sun'
 
 const skills = [
   {
-    label: 'Application',
-    items: ['C#', '.NET', 'Dynamics 365', 'Power Platform', 'Java', 'AI-Forward Software Development'],
+    label: 'Backend & APIs',
+    items: ['C#', '.NET', 'API integrations', 'GraphQL', 'Java'],
   },
   {
-    label: 'Interface',
-    items: ['React', 'TypeScript', 'JavaScript', 'HTML', 'CSS', 'PCF'],
+    label: 'Frontend',
+    items: ['React', 'TypeScript', 'JavaScript', 'HTML', 'CSS', 'Responsive UI'],
   },
   {
-    label: 'Cloud & data',
-    items: ['Azure Functions', 'Azure Queues', 'Key Vault', 'API integrations', 'Oracle SQL'],
+    label: 'Azure & integration',
+    items: ['Azure Functions', 'Azure queues', 'Azure Key Vault', 'Serverless architecture', 'Event-driven architecture'],
   },
   {
-    label: 'Quality',
-    items: ['Playwright', 'Storybook', 'React Testing Library', 'Selenium', 'Accessibility'],
+    label: 'Enterprise platforms',
+    items: ['Microsoft Dynamics 365', 'Microsoft Power Platform', 'CRM customization', 'PCF controls', 'Business process automation'],
+  },
+  {
+    label: 'Data & quality',
+    items: ['SQL', 'Oracle SQL', 'Playwright', 'React Testing Library', 'Storybook', 'Selenium'],
+  },
+  {
+    label: 'Delivery',
+    items: ['Solution architecture', 'Requirements analysis', 'Agile delivery', 'Technical ownership', 'AI-assisted development', 'Stakeholder collaboration'],
   },
 ]
 
-const projects = [
+const roles = [
+  {
+    period: 'Jun 2022 — Present',
+    company: 'Hitachi Solutions',
+    title: 'Senior Software Developer Consultant',
+    bullets: [
+      'Architect and deliver C#/.NET services, React and TypeScript interfaces, Microsoft Dynamics 365 CRM customizations, and Azure integrations for enterprise clients.',
+      'Translate complex business requirements into configurable workflows, rules-driven applications, and integrated forecasting systems.',
+      'Build serverless, event-driven integrations with Azure Functions, Azure queues, and Azure Key Vault.',
+      'Lead front-end architecture and technical task decomposition through implementation, testing, production delivery, and maintenance.',
+    ],
+    projects: [
+      {
+        title: 'John Deere CRM platform',
+        bullets: [
+          'Extended an enterprise Microsoft Dynamics 365 CRM with C#/.NET custom-code solutions, React interfaces, and Azure integrations.',
+          'Delivered custom CRM features, integrations, invoicing, and time-tracking workflows for an enterprise environment spanning 12+ legal entities, 100+ locations, and thousands of daily users.',
+          'Owned key features from initial business requirements and technical design through implementation, stakeholder demonstrations, continuous support, and enhancement.',
+          'Delivered high-priority conference features under tight deadlines and developed large-scale integrations across the CRM ecosystem.',
+          'Mentored newer team members, promoted engineering best practices, and encouraged AI-first development workflows.',
+        ],
+      },
+      {
+        title: 'Dynamics 365 Field Service Schedule Board',
+        bullets: [
+          'Redesigned and refactored the React dispatcher workspace for resource availability, bookings, work orders, and scheduling.',
+          'Built accessibility and localization into an experience used globally.',
+        ],
+      },
+      {
+        title: 'GlobalFoundries manufacturing forecasting framework',
+        bullets: [
+          'Led requirements analysis, solution architecture, and development for a forecasting framework integrated with existing business applications.',
+          'Enabled sales teams to create more informed estimates and timelines while forecasting chip production schedules and manufacturing demand.',
+        ],
+      },
+      {
+        title: 'Bright Health Group care planning',
+        bullets: [
+          'Extended the existing CRM with configurable questionnaires and rules-driven care-planning workflows.',
+          'Used questionnaire responses and configurable rules to enable healthcare experts to automatically create tailored customer care plans.',
+        ],
+      },
+      {
+        title: 'SOW forecasting and estimation platform',
+        bullets: [
+          'Delivered a role-based React application with dashboards, spreadsheet-like data entry, chat, and configuration tooling.',
+          'Improved the accuracy of forecasts and statement-of-work estimates while completing delivery ahead of schedule.',
+        ],
+      },
+    ],
+    current: true,
+  },
+  {
+    period: 'Sep 2021 — Apr 2022',
+    company: 'Loblaw Digital',
+    title: 'Front End Developer',
+    bullets: [
+      'Built and maintained reusable React components for Shoppers Drug Mart’s customer-facing digital experience, supporting a large and established customer base.',
+      'Translated designs and wireframes into responsive, accessible user interfaces and supported the GraphQL middleware layer.',
+      'Implemented component, integration, and end-to-end test coverage with React Testing Library, Storybook, and Playwright; addressed Java backend issues as needed.',
+    ],
+  },
+  {
+    period: 'May 2019 — Dec 2019',
+    company: 'Ministry of Education',
+    title: 'IT QA Assistant',
+    bullets: [
+      'Supported Selenium test automation across 20 applications and validated application data with Oracle SQL.',
+      'Produced defect and test reporting, supported knowledge transfer, and mentored team members.',
+    ],
+  },
+]
+
+const projects: Project[] = [
   {
     number: '01',
-    title: 'Enterprise operations platform',
-    client: 'John Deere · Staff augmentation',
+    title: 'Mobile work order application',
+    client: 'John Deere · Microsoft Dynamics 365 CRM',
     description:
-      'Full-stack delivery for a multi-tenant Azure application spanning 12+ legal entities, 100+ locations, and thousands of daily users. Built integrations and invoicing and time-tracking interfaces. I have led multiple flagship UI redesigns from architecture and task decomposition through delivery and maintenance.',
-    tags: ['Full-stack', 'React', 'Azure', 'Architecture'],
+      'Designed and built a mobile-friendly React application backed by an Azure Functions API exposed through Azure API Management. The backend used user selections to query multiple external APIs and databases, normalize the returned data, and generate the appropriate Dynamics 365 work orders while minimizing clicks for clear, low-friction use.',
+    tags: ['React', 'Azure Functions', 'Azure API Management', 'API integrations', 'Data normalization', 'Responsive UI'],
   },
   {
     number: '02',
-    title: 'Global scheduling experience',
-    client: 'Microsoft · Staff augmentation',
+    title: 'Dynamics 365 Field Service Schedule Board',
+    client: 'Microsoft · Global enterprise platform',
     description:
-      'Redesigned and refactored the Field Service Schedule Board in React, with accessibility and localization built into an experience used worldwide across Microsoft Field Service users.',
-    tags: ['React', 'Accessibility', 'Localization', 'Dynamics 365'],
+      'Redesigned and refactored the React experience for the globally used dispatcher workspace that visualizes resource availability and bookings, manages work orders, and helps match jobs to the right resources.',
+    tags: ['React', 'Dynamics 365 Field Service', 'Resource scheduling', 'Accessibility', 'Localization'],
+    image: {
+      src: `${import.meta.env.BASE_URL}field-service-schedule-board.png`,
+      alt: 'Microsoft Dynamics 365 Field Service Schedule Board showing resources, bookings, requirements, and a map',
+      caption: '© Microsoft',
+      sourceUrl: 'https://github.com/MicrosoftDocs/dynamics-365-customer-engagement/blob/main/ce/field-service/media/work-order-process-2.png',
+      licenseUrl: 'https://creativecommons.org/licenses/by/4.0/',
+    },
   },
   {
     number: '03',
-    title: 'Forecasting application',
-    client: 'Hitachi Solutions · Internal IP',
+    title: 'Semiconductor manufacturing forecasting',
+    client: 'GlobalFoundries · Enterprise delivery',
     description:
-      'Delivered a React forecasting product with role-based experiences, chat, dashboards, spreadsheet-like data entry, and configuration tooling—finishing ahead of schedule despite reduced capacity. This forecaster is now used in our entire sales estimation process and is integral to our successful delivery of multiple enterprise engagements.',
-    tags: ['React', 'Product UI', 'Dashboards', 'Data entry'],
+      'Architected and developed a forecasting framework integrated with existing applications, enabling sales teams to create more informed estimates and timelines while forecasting chip production schedules and manufacturing demand.',
+    tags: ['Solution architecture', 'Systems integration', 'Sales estimation', 'Demand forecasting'],
+  },
+  {
+    number: '04',
+    title: 'SOW forecasting and estimation platform',
+    client: 'Hitachi Solutions',
+    description:
+      'Delivered a React platform that improved the accuracy of forecasts and statement-of-work estimates through role-based experiences, dashboards, spreadsheet-like data entry, chat, and configuration tooling.',
+    tags: ['React', 'SOW estimation', 'Data-intensive UI', 'Product delivery'],
+  },
+  {
+    number: '05',
+    title: 'Shoppers Drug Mart digital experience',
+    client: 'Loblaw Digital · Front End Developer',
+    description:
+      'Built and maintained reusable React components for Shoppers Drug Mart’s customer-facing platform, delivered responsive and accessible interfaces, and supported its GraphQL middleware layer and Java backend.',
+    tags: ['React', 'GraphQL middleware', 'Java', 'Reusable components', 'Accessible UI'],
+  },
+  {
+    number: '06',
+    title: 'DevIntercept',
+    client: 'Independent project · Developer tooling',
+    description:
+      'Built a Windows desktop tool that improves frontend development workflows by replacing remote browser responses with local or development-server content and supporting Vite HMR, so code changes appear on the fly without full page refreshes.',
+    tags: ['C#', '.NET 8', 'WPF', 'Playwright', 'Vite HMR'],
+    url: 'https://github.com/Chris034/DevIntercept',
+    repositoryPreview: true,
+  },
+  {
+    number: '07',
+    title: 'Cache',
+    client: 'Independent project · Real-time collaboration',
+    description:
+      'Built a no-login, room-based web application for instantly sharing text, links, images, and files between devices or friends. Combined a React and TypeScript client with Socket.IO messaging, an Express API, MongoDB persistence, and generated OpenAPI documentation.',
+    tags: ['React', 'TypeScript', 'Socket.IO', 'Express', 'MongoDB', 'OpenAPI'],
+    url: 'https://github.com/Chris034/cache',
+    image: {
+      src: `${import.meta.env.BASE_URL}cache-landing-page.png`,
+      alt: 'Cache landing page with the tagline fast and simple file sharing and buttons to create or join a room',
+      caption: 'Cache landing page',
+    },
   },
 ]
 
@@ -121,12 +267,7 @@ const testimonials = [
 function App() {
   const [theme, setTheme] = useState<Theme>(() => {
     const savedTheme = window.localStorage.getItem('portfolio-theme')
-
-    if (savedTheme === 'light' || savedTheme === 'dark') {
-      return savedTheme
-    }
-
-    return 'dark'
+    return savedTheme === 'light' || savedTheme === 'dark' ? savedTheme : 'dark'
   })
 
   useEffect(() => {
@@ -143,283 +284,264 @@ function App() {
         Skip to content
       </a>
 
-      <header className="site-header">
-        <a className="brand" href="#top" aria-label="Christian Sarran, home">
-          <span>Christian Sarran</span>
-        </a>
-        <nav aria-label="Primary navigation">
-          <a href="#profile">Profile</a>
-          <a href="#experience">Experience</a>
-          <a href="#work">Work</a>
-          <a href="#testimonials">Testimonials</a>
-          <a href="#credentials">Credentials</a>
-        </nav>
-        <div className="header-actions">
-          <button
-            className="theme-toggle"
-            type="button"
-            aria-label={`Switch to ${nextTheme} mode`}
-            title={`Switch to ${nextTheme} mode`}
-            onClick={() => setTheme(nextTheme)}
-          >
-            <Icon name={theme === 'dark' ? 'sun' : 'moon'} />
-          </button>
-          <a
-            className="header-social"
-            href="https://github.com/Chris034"
-            target="_blank"
-            rel="noreferrer"
-            aria-label="View Christian Sarran on GitHub (opens in a new tab)"
-          >
-            <Icon name="github" />
-          </a>
-        </div>
-      </header>
-
-      <main id="main">
-        <section className="hero section-shell" id="top">
-          <div className="hero-copy reveal">
-            <p className="eyebrow"><span /> Senior Software Developer</p>
-            <h1>
-              Engineering dependable
-              <span> digital products.</span>
-            </h1>
-            <p className="hero-intro">
-              Full-stack developer building thoughtful enterprise software across React,
-              .NET, Dynamics 365, and Azure.
+      <div className="portfolio-layout">
+        <aside className="profile-rail">
+          <div className="identity">
+            <p className="eyebrow">Senior Full-Stack Software Developer</p>
+            <h1>Christian<br />Sarran</h1>
+            <p className="profile-summary">
+              Enterprise CRM, business-process automation, and data-intensive applications
+              with C#/.NET, React, TypeScript, Microsoft Azure, Dynamics 365, and Power Platform.
             </p>
-            <div className="hero-actions">
-              <a className="button button-primary" href="#work">
-                Explore selected work <Icon name="arrow" />
+          </div>
+
+          <nav className="rail-nav" aria-label="Portfolio sections">
+            <a href="#experience"><span>01</span> Experience</a>
+            <a href="#work"><span>02</span> Selected work</a>
+            <a href="#feedback"><span>03</span> Feedback</a>
+          </nav>
+
+          <div className="rail-section">
+            <p className="rail-label">Core stack</p>
+            {skills.map((group) => (
+              <div className="skill-line" key={group.label}>
+                <strong>{group.label}</strong>
+                <span>{group.items.join(' · ')}</span>
+              </div>
+            ))}
+          </div>
+
+          <div className="rail-section credentials">
+            <p className="rail-label">Credentials</p>
+            <p>5+ years of professional experience</p>
+            <p>University of Toronto · HBSc</p>
+            <p>PL-200 · PL-400 · PL-900 · AZ-900</p>
+          </div>
+
+          <div className="rail-footer">
+            <div className="social-links">
+              <a
+                href="https://github.com/Chris034"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="View Christian Sarran on GitHub (opens in a new tab)"
+              >
+                <Icon name="github" /> GitHub
               </a>
               <a
-                className="button button-secondary"
                 href="https://www.linkedin.com/in/christian-sarran-290290140/"
                 target="_blank"
                 rel="noreferrer"
+                aria-label="View Christian Sarran on LinkedIn (opens in a new tab)"
               >
-                Connect on LinkedIn <Icon name="linkedin" />
+                <Icon name="linkedin" /> LinkedIn
               </a>
             </div>
+            <button
+              className="theme-toggle"
+              type="button"
+              aria-label={`Switch to ${nextTheme} mode`}
+              title={`Switch to ${nextTheme} mode`}
+              onClick={() => setTheme(nextTheme)}
+            >
+              <Icon name={theme === 'dark' ? 'sun' : 'moon'} />
+            </button>
           </div>
+        </aside>
 
-          <div className="hero-visual reveal" aria-hidden="true">
-            <div className="orbit orbit-one" />
-            <div className="orbit orbit-two" />
-            <div className="signal-card signal-main">
-              <div className="signal-label">PRODUCT ENGINEERING</div>
-              <div className="signal-title">Clarity in complex systems</div>
-              <div className="signal-grid">
-                <span>01</span><i /><span>DISCOVER</span>
-                <span>02</span><i /><span>DESIGN</span>
-                <span>03</span><i /><span>DELIVER</span>
-              </div>
-            </div>
-            <div className="signal-card signal-tag">
-              <span className="pulse-dot" />
-              FULL-STACK
-            </div>
-          </div>
-        </section>
+        <div className="content-column">
+          <header className="mobile-header">
+            <a href="#top">Christian Sarran</a>
+            <button
+              className="theme-toggle"
+              type="button"
+              aria-label={`Switch to ${nextTheme} mode`}
+              title={`Switch to ${nextTheme} mode`}
+              onClick={() => setTheme(nextTheme)}
+            >
+              <Icon name={theme === 'dark' ? 'sun' : 'moon'} />
+            </button>
+          </header>
 
-        <section className="profile section-shell section-rule" id="profile">
-          <div className="section-heading">
-            <p className="section-index">01 / Profile</p>
-            <h2>Software built for people,<br />systems, and scale.</h2>
-          </div>
-          <div className="profile-copy">
-            <p className="lead">
-              I turn complex requirements into clear, resilient software—working across
-              the interface, application layer, integrations, and cloud infrastructure.
-            </p>
-            <p>
-              At Hitachi Solutions, I partner with clients and cross-functional agile teams
-              to deliver Dynamics 365 and custom web experiences under strict deadlines.
-              My work pairs technical depth with accessible UI thinking, careful
-              communication, and a strong customer-service focus.
-            </p>
-            <p>
-              I also use AI-assisted development workflows with context files and
-              environment schema definitions to improve generation accuracy,
-              consistency, and productivity.
-            </p>
-          </div>
-        </section>
-
-        <section className="skills section-shell section-rule" aria-labelledby="skills-title">
-          <div className="section-heading">
-            <p className="section-index">02 / Technology</p>
-            <h2 id="skills-title">Tools chosen for<br />the problem.</h2>
-          </div>
-          <div className="skill-groups">
-            {skills.map((group) => (
-              <div className="skill-group" key={group.label}>
-                <h3>{group.label}</h3>
-                <ul>
-                  {group.items.map((item) => <li key={item}>{item}</li>)}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section className="experience section-shell section-rule" id="experience">
-          <div className="section-heading">
-            <p className="section-index">03 / Experience</p>
-            <h2>Building across<br />the stack.</h2>
-          </div>
-          <div className="timeline">
-            <article className="role current">
-              <div className="role-meta">
-                <p>Jun 2022 — Present</p>
-                <span>Current</span>
-              </div>
-              <div className="role-body">
-                <p className="company">Hitachi Solutions</p>
-                <h3>Senior Software Developer Consultant</h3>
+          <main id="main">
+            <section className="intro" id="top">
+              <p className="eyebrow">C#/.NET · React/TypeScript · Microsoft Azure</p>
+              <h2>Engineering dependable digital products.</h2>
+              <div className="intro-copy">
                 <p>
-                  Develop C#/.NET plugins, console applications, custom actions, web
-                  resources, and PCF controls for Dynamics 365, alongside responsive
-                  interfaces in React, TypeScript, JavaScript, CSS, and HTML. Build API
-                  integrations with Azure Functions, Queues, and Key Vault while
-                  collaborating across client and agile teams.
-
-                  Consistently develivered excellence across serveral enterprise and
-                  product engagements explimifying adaptability, technical depth, and a strong customer-service focus.
+                  Senior full-stack software developer experienced in software
+                  architecture, CRM customization, systems integration, accessible user
+                  interfaces, test automation, and end-to-end Agile delivery.
                 </p>
-                <div className="role-note">
-                  <span aria-hidden="true">✦</span>
-                  <p>Recipient of the annual Rising Star Award, with consistently excellent customer service and CSAT.</p>
+                <p>
+                  I translate complex business requirements into enterprise systems and
+                  lead delivery from technical decomposition through implementation,
+                  production support, and maintenance.
+                </p>
+              </div>
+              <div className="highlights" aria-label="Career highlights">
+                <div><strong>C#/.NET + Azure</strong><span>Backend and cloud integration</span></div>
+                <div><strong>React + TypeScript</strong><span>Accessible product interfaces</span></div>
+                <div><strong>Dynamics 365</strong><span>CRM and workflow automation</span></div>
+              </div>
+            </section>
+
+            <section className="content-section" id="experience">
+              <div className="section-heading">
+                <div>
+                  <p className="section-index">01 / Experience</p>
+                  <h2>Building across the stack.</h2>
                 </div>
+                <p>Product-minded engineering grounded in clear communication and dependable delivery.</p>
               </div>
-            </article>
 
-            <article className="role">
-              <div className="role-meta"><p>Sep 2021 — Apr 2022</p></div>
-              <div className="role-body">
-                <p className="company">Loblaw Digital</p>
-                <h3>Front End Developer</h3>
-                <p>
-                  Maintained a reusable React component library with JavaScript, HTML,
-                  CSS, and GraphQL; translated designs into responsive, accessible
-                  interfaces; built Playwright, Storybook, and React Testing Library
-                  coverage; and addressed backend issues in Java.
-                </p>
+              <div className="experience-list">
+                {roles.map((role) => (
+                  <article className="experience-item" key={`${role.company}-${role.title}`}>
+                    <div className="experience-meta">
+                      <p>{role.period}</p>
+                      {role.current && <span>Current</span>}
+                    </div>
+                    <div>
+                      <p className="company">{role.company}</p>
+                      <h3>{role.title}</h3>
+                      <ul className="experience-bullets">
+                        {role.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}
+                      </ul>
+                      {'projects' in role && role.projects && (
+                        <div className="role-projects">
+                          <p className="role-projects-label">Key projects</p>
+                          {role.projects.map((project) => (
+                            <details className="role-project" key={project.title}>
+                              <summary>
+                                <strong>{project.title}</strong>
+                                <i aria-hidden="true">+</i>
+                              </summary>
+                              <ul>
+                                {project.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}
+                              </ul>
+                            </details>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  </article>
+                ))}
               </div>
-            </article>
+            </section>
 
-            <article className="role">
-              <div className="role-meta"><p>May 2019 — Dec 2019</p></div>
-              <div className="role-body">
-                <p className="company">Ministry of Education</p>
-                <h3>IT QA Assistant</h3>
-                <p>
-                  Supported Selenium testing across 20 applications, Oracle SQL data
-                  validation and modification, defect and test reporting, knowledge
-                  transfer, and mentoring.
-                </p>
-              </div>
-            </article>
-          </div>
-        </section>
-
-        <section className="work section-shell section-rule" id="work">
-          <div className="work-heading">
-            <div>
-              <p className="section-index">04 / Selected work</p>
-              <h2>Complex work,<br />clearly delivered.</h2>
-            </div>
-            <p>A selection of enterprise and product engagements delivered at Hitachi Solutions.</p>
-          </div>
-          <div className="project-list">
-            {projects.map((project) => (
-              <article className="project" key={project.number}>
-                <p className="project-number">{project.number}</p>
-                <div className="project-content">
-                  <p className="project-client">{project.client}</p>
-                  <h3>{project.title}</h3>
-                  <p>{project.description}</p>
-                  <ul aria-label={`${project.title} technologies and focus areas`}>
-                    {project.tags.map((tag) => <li key={tag}>{tag}</li>)}
-                  </ul>
+            <section className="content-section" id="work">
+              <div className="section-heading">
+                <div>
+                  <p className="section-index">02 / Selected work</p>
+                  <h2>Complex work, clearly delivered.</h2>
                 </div>
-              </article>
-            ))}
-          </div>
-        </section>
+                <p>Enterprise, product, and independent software work.</p>
+              </div>
 
-        <section className="testimonials section-shell section-rule" id="testimonials">
-          <div className="section-heading">
-            <p className="section-index">05 / Testimonials</p>
-            <h2>Trusted when the<br />work matters.</h2>
-            <p className="section-intro">
-              Feedback from client and delivery partners across enterprise engagements.
-            </p>
-          </div>
-          <div className="testimonial-grid">
-            {testimonials.map((testimonial, index) => (
-              <figure
-                className={`testimonial-card${index === 0 ? ' testimonial-featured' : ''}`}
-                key={testimonial.attribution}
-              >
-                <span className="quote-mark" aria-hidden="true">“</span>
-                <blockquote>
-                  <p>{testimonial.quote}</p>
-                </blockquote>
-                <figcaption>
-                  <span aria-hidden="true" />
-                  {testimonial.attribution}
-                </figcaption>
-              </figure>
-            ))}
-          </div>
-        </section>
+              <div className="project-grid">
+                {projects.map((project) => (
+                  <article className="project-card" key={project.number}>
+                    <div className="project-meta">
+                      <span>{project.number}</span>
+                      <p>{project.client}</p>
+                    </div>
+                    {project.image && (
+                      <figure className="project-media">
+                        <a
+                          href={project.image.src}
+                          target="_blank"
+                          rel="noreferrer"
+                          aria-label={`View ${project.title} image full size (opens in a new tab)`}
+                        >
+                          <img src={project.image.src} alt={project.image.alt} loading="lazy" />
+                        </a>
+                        <figcaption>
+                          <span>{project.image.caption}</span>
+                          {project.image.sourceUrl && (
+                            <a href={project.image.sourceUrl} target="_blank" rel="noreferrer">Source</a>
+                          )}
+                          {project.image.licenseUrl && (
+                            <a href={project.image.licenseUrl} target="_blank" rel="noreferrer">CC BY 4.0</a>
+                          )}
+                        </figcaption>
+                      </figure>
+                    )}
+                    {project.repositoryPreview && project.url && (
+                      <a
+                        className="project-repository-preview"
+                        href={project.url}
+                        target="_blank"
+                        rel="noreferrer"
+                        aria-label={`View ${project.title} on GitHub (opens in a new tab)`}
+                      >
+                        <Icon name="github" />
+                        <span>
+                          <strong>View project on GitHub</strong>
+                          <small>github.com/Chris034/DevIntercept</small>
+                        </span>
+                        <Icon name="arrow" />
+                      </a>
+                    )}
+                    <h3>{project.title}</h3>
+                    <p>{project.description}</p>
+                    <div className="project-footer">
+                      <ul aria-label={`${project.title} technologies and focus areas`}>
+                        {project.tags.map((tag) => <li key={tag}>{tag}</li>)}
+                      </ul>
+                      {project.url && !project.repositoryPreview && (
+                        <a
+                          className="project-link"
+                          href={project.url}
+                          target="_blank"
+                          rel="noreferrer"
+                          aria-label={`View ${project.title} on GitHub (opens in a new tab)`}
+                        >
+                          GitHub <Icon name="arrow" />
+                        </a>
+                      )}
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </section>
 
-        <section className="credentials section-shell section-rule" id="credentials">
-          <div className="section-heading">
-            <p className="section-index">06 / Credentials</p>
-            <h2>Continual learning,<br />grounded in practice.</h2>
-          </div>
-          <div className="credential-content">
-            <article className="education-card">
-              <p className="credential-label">Education</p>
-              <p className="credential-year">2021</p>
-              <h3>University of Toronto</h3>
-              <p>Honours Bachelor of Science</p>
-              <p>Specialist in Statistics Co-op, Machine Learning and Data Mining</p>
-            </article>
-            <div className="certifications">
-              <p className="credential-label">Microsoft certifications</p>
-              <ul>
-                <li><strong>PL-200</strong><span>Power Platform Functional Consultant</span></li>
-                <li><strong>PL-400</strong><span>Power Platform Developer</span></li>
-                <li><strong>PL-900</strong><span>Power Platform Fundamentals</span></li>
-                <li><strong>AZ-900</strong><span>Azure Fundamentals</span></li>
-              </ul>
-            </div>
-          </div>
-        </section>
-      </main>
+            <section className="content-section" id="feedback">
+              <div className="section-heading">
+                <div>
+                  <p className="section-index">03 / Feedback</p>
+                  <h2>Client and coworker feedback.</h2>
+                </div>
+                <p>Direct feedback from client and delivery partners across enterprise engagements.</p>
+              </div>
 
-      <footer>
-        <div className="footer-inner section-shell">
-          <p className="section-index">Connect</p>
-          <h2>Let’s build software<br />that holds up.</h2>
-          <p className="footer-copy">Find my work and professional profile on the platforms below.</p>
-          <div className="footer-links">
-            <a href="https://github.com/Chris034" target="_blank" rel="noreferrer">
-              <Icon name="github" /> GitHub <Icon name="arrow" />
-            </a>
-            <a href="https://www.linkedin.com/in/christian-sarran-290290140/" target="_blank" rel="noreferrer">
-              <Icon name="linkedin" /> LinkedIn <Icon name="arrow" />
-            </a>
-          </div>
-          <div className="footer-bottom">
+              <div className="feedback-list">
+                {testimonials.map((testimonial, index) => (
+                  <details className="feedback-item" key={testimonial.attribution} open={index === 0}>
+                    <summary>
+                      <span>{String(index + 1).padStart(2, '0')}</span>
+                      <strong>{testimonial.attribution}</strong>
+                      <i aria-hidden="true">+</i>
+                    </summary>
+                    <blockquote>
+                      <p>“{testimonial.quote}”</p>
+                    </blockquote>
+                  </details>
+                ))}
+              </div>
+            </section>
+          </main>
+
+          <footer>
             <p>© {new Date().getFullYear()} Christian Sarran</p>
-            <a href="#top">Back to top <span aria-hidden="true">↑</span></a>
-          </div>
+            <div>
+              <a href="https://github.com/Chris034" target="_blank" rel="noreferrer">GitHub</a>
+              <a href="https://www.linkedin.com/in/christian-sarran-290290140/" target="_blank" rel="noreferrer">LinkedIn</a>
+              <a href="#top">Back to top ↑</a>
+            </div>
+          </footer>
         </div>
-      </footer>
+      </div>
     </>
   )
 }
