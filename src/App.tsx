@@ -195,28 +195,12 @@ const projects: Project[] = [
     },
   },
   {
-    kind: 'Enterprise delivery',
-    title: 'Semiconductor manufacturing forecasting',
-    client: 'GlobalFoundries',
-    description:
-      'Architected and developed a forecasting framework integrated with existing applications, enabling sales teams to create more informed estimates and timelines while forecasting chip production schedules and manufacturing demand.',
-    tags: ['Solution architecture', 'Systems integration', 'Sales estimation', 'Demand forecasting'],
-  },
-  {
     kind: 'Internal product',
     title: 'SOW forecasting and estimation platform',
     client: 'Hitachi Solutions',
     description:
       'Delivered a React platform that improved the accuracy of forecasts and statement-of-work estimates through role-based experiences, dashboards, spreadsheet-like data entry, chat, and configuration tooling.',
     tags: ['React', 'SOW estimation', 'Data-intensive UI', 'Product delivery'],
-  },
-  {
-    kind: 'Consumer platform',
-    title: 'Shoppers Drug Mart digital experience',
-    client: 'Loblaw Digital · Front End Developer',
-    description:
-      'Built and maintained reusable React components for Shoppers Drug Mart’s customer-facing platform, delivered responsive and accessible interfaces, and supported its GraphQL middleware layer and Java backend.',
-    tags: ['React', 'GraphQL middleware', 'Java', 'Reusable components', 'Accessible UI'],
   },
   {
     kind: 'Independent project',
