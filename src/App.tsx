@@ -20,7 +20,7 @@ type Project = {
   }
 }
 
-const Icon = ({ name }: { name: 'arrow' | 'github' | 'linkedin' | 'mail' | 'moon' | 'sun' }) => {
+const Icon = ({ name }: { name: 'arrow' | 'document' | 'github' | 'linkedin' | 'mail' | 'moon' | 'sun' }) => {
   if (name === 'github') {
     return (
       <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -33,6 +33,15 @@ const Icon = ({ name }: { name: 'arrow' | 'github' | 'linkedin' | 'mail' | 'moon
     return (
       <svg viewBox="0 0 24 24" aria-hidden="true">
         <path d="M6.5 8.2H3.2V19H6.5V8.2ZM4.85 3a1.94 1.94 0 1 0 0 3.88 1.94 1.94 0 0 0 0-3.88ZM19.8 12.82c0-3.25-1.73-4.76-4.04-4.76a3.5 3.5 0 0 0-3.18 1.75V8.2H9.27V19h3.31v-5.35c0-1.41.27-2.78 2.02-2.78 1.72 0 1.74 1.61 1.74 2.87V19h3.31l.15-6.18Z" />
+      </svg>
+    )
+  }
+
+  if (name === 'document') {
+    return (
+      <svg className="icon-stroke" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M14 2.8H7a2 2 0 0 0-2 2v14.4a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7.8l-5-5Z" />
+        <path d="M13.6 3v5h5M8.6 13h6.8M8.6 16.6h4.6" />
       </svg>
     )
   }
@@ -345,6 +354,14 @@ function App() {
               >
                 <Icon name="mail" /> Email
               </a>
+              <a
+                href={`${import.meta.env.BASE_URL}Christian-Sarran-Resume.pdf`}
+                target="_blank"
+                rel="noreferrer"
+                aria-label="View Christian Sarran's resume as a PDF (opens in a new tab)"
+              >
+                <Icon name="document" /> Resume
+              </a>
             </div>
             <button
               className="theme-toggle"
@@ -547,6 +564,13 @@ function App() {
               <a href="https://github.com/Chris034" target="_blank" rel="noreferrer">GitHub</a>
               <a href="https://www.linkedin.com/in/christian-sarran-290290140/" target="_blank" rel="noreferrer">LinkedIn</a>
               <a href="mailto:christian.k.sarran@gmail.com">Email</a>
+              <a
+                href={`${import.meta.env.BASE_URL}Christian-Sarran-Resume.pdf`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Resume (PDF)
+              </a>
               <a href="#top">Back to top ↑</a>
             </div>
           </footer>
