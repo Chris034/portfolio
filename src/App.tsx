@@ -20,7 +20,7 @@ type Project = {
   }
 }
 
-const Icon = ({ name }: { name: 'arrow' | 'github' | 'linkedin' | 'moon' | 'sun' }) => {
+const Icon = ({ name }: { name: 'arrow' | 'github' | 'linkedin' | 'mail' | 'moon' | 'sun' }) => {
   if (name === 'github') {
     return (
       <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -33,6 +33,15 @@ const Icon = ({ name }: { name: 'arrow' | 'github' | 'linkedin' | 'moon' | 'sun'
     return (
       <svg viewBox="0 0 24 24" aria-hidden="true">
         <path d="M6.5 8.2H3.2V19H6.5V8.2ZM4.85 3a1.94 1.94 0 1 0 0 3.88 1.94 1.94 0 0 0 0-3.88ZM19.8 12.82c0-3.25-1.73-4.76-4.04-4.76a3.5 3.5 0 0 0-3.18 1.75V8.2H9.27V19h3.31v-5.35c0-1.41.27-2.78 2.02-2.78 1.72 0 1.74 1.61 1.74 2.87V19h3.31l.15-6.18Z" />
+      </svg>
+    )
+  }
+
+  if (name === 'mail') {
+    return (
+      <svg className="icon-stroke" viewBox="0 0 24 24" aria-hidden="true">
+        <rect x="2.6" y="4.6" width="18.8" height="14.8" rx="2.4" />
+        <path d="m3.6 7.2 8.4 5.9 8.4-5.9" />
       </svg>
     )
   }
@@ -166,7 +175,7 @@ const projects: Project[] = [
   {
     kind: 'Client delivery',
     title: 'Unified Job Search Application',
-    client: 'Dynamics 365 Field Service',
+    client: 'John Deere · Dynamics 365 Field Service',
     description:
       'Designed and built a production React and TypeScript application embedded in Dynamics 365 Field Service that unifies service-job search across five internal and third-party sources, replacing a legacy single-source tool. A pluggable source-strategy registry lets new backends be added without touching the UI, store, or orchestration layers, while composite priority-paginated infinite search fuses cursor-based and page-based results into one ranked grid. Six typed Dataverse service actions power job and checklist detail retrieval, part suggestions, ML-based labor-hour estimates, and a full submission pipeline with per-job error isolation and partial-success reporting.',
     tags: ['React 19', 'TypeScript', 'Fluent UI', 'TanStack Query', 'Zustand', 'Dataverse Web API'],
@@ -174,7 +183,7 @@ const projects: Project[] = [
   {
     kind: 'Client delivery',
     title: 'Work Order Segment Review Application',
-    client: 'Dynamics 365 Field Service',
+    client: 'John Deere · Dynamics 365 Field Service',
     description:
       'Built a production work-in-progress review application that gives service managers a single screen to review, edit, and price every segment of a work order, replacing several legacy form-based controls. A master-detail layout pairs a segment grid with persisted, user-customizable column layouts above tabs for labor, parts, pricing, notes, and documents. Re-engineered pricing logic reaches feature parity with the legacy control while coexisting with its server-side plugins, and a Zustand buffering layer keeps unsaved edits intact across tab and segment switches before reconciling with server state on save.',
     tags: ['React', 'TypeScript', 'Fluent UI', 'TanStack Query', 'Zustand', 'Vitest'],
@@ -306,7 +315,9 @@ function App() {
           <div className="rail-section credentials">
             <p className="rail-label">Credentials</p>
             <p>5+ years of professional experience</p>
-            <p>University of Toronto · HBSc</p>
+            <p className="credential-highlight">Rising Star Award · Hitachi Solutions</p>
+            <p>University of Toronto · HBSc, Statistics specialist</p>
+            <p>Machine learning and data mining focus</p>
             <p>PL-200 · PL-400 · PL-900 · AZ-900</p>
           </div>
 
@@ -327,6 +338,12 @@ function App() {
                 aria-label="View Christian Sarran on LinkedIn (opens in a new tab)"
               >
                 <Icon name="linkedin" /> LinkedIn
+              </a>
+              <a
+                href="mailto:christian.k.sarran@gmail.com"
+                aria-label="Email Christian Sarran at christian.k.sarran@gmail.com"
+              >
+                <Icon name="mail" /> Email
               </a>
             </div>
             <button
@@ -529,6 +546,7 @@ function App() {
             <div>
               <a href="https://github.com/Chris034" target="_blank" rel="noreferrer">GitHub</a>
               <a href="https://www.linkedin.com/in/christian-sarran-290290140/" target="_blank" rel="noreferrer">LinkedIn</a>
+              <a href="mailto:christian.k.sarran@gmail.com">Email</a>
               <a href="#top">Back to top ↑</a>
             </div>
           </footer>

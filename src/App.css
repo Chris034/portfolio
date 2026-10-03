@@ -75,6 +75,14 @@ svg {
   stroke: none;
 }
 
+.icon-stroke {
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.6;
+}
+
 .skip-link {
   position: fixed;
   top: 1rem;
@@ -199,6 +207,11 @@ svg {
 
 .credentials p + p {
   margin-top: 0.35rem;
+}
+
+.credentials p.credential-highlight {
+  color: var(--accent);
+  font-weight: 600;
 }
 
 .rail-footer {
