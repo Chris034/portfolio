@@ -4,7 +4,7 @@ import './App.css'
 type Theme = 'light' | 'dark'
 
 type Project = {
-  number: string
+  kind: string
   title: string
   client: string
   description: string
@@ -20,7 +20,7 @@ type Project = {
   }
 }
 
-const Icon = ({ name }: { name: 'arrow' | 'github' | 'linkedin' | 'moon' | 'sun' }) => {
+const Icon = ({ name }: { name: 'arrow' | 'document' | 'github' | 'linkedin' | 'mail' | 'moon' | 'sun' }) => {
   if (name === 'github') {
     return (
       <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -33,6 +33,24 @@ const Icon = ({ name }: { name: 'arrow' | 'github' | 'linkedin' | 'moon' | 'sun'
     return (
       <svg viewBox="0 0 24 24" aria-hidden="true">
         <path d="M6.5 8.2H3.2V19H6.5V8.2ZM4.85 3a1.94 1.94 0 1 0 0 3.88 1.94 1.94 0 0 0 0-3.88ZM19.8 12.82c0-3.25-1.73-4.76-4.04-4.76a3.5 3.5 0 0 0-3.18 1.75V8.2H9.27V19h3.31v-5.35c0-1.41.27-2.78 2.02-2.78 1.72 0 1.74 1.61 1.74 2.87V19h3.31l.15-6.18Z" />
+      </svg>
+    )
+  }
+
+  if (name === 'document') {
+    return (
+      <svg className="icon-stroke" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M14 2.8H7a2 2 0 0 0-2 2v14.4a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7.8l-5-5Z" />
+        <path d="M13.6 3v5h5M8.6 13h6.8M8.6 16.6h4.6" />
+      </svg>
+    )
+  }
+
+  if (name === 'mail') {
+    return (
+      <svg className="icon-stroke" viewBox="0 0 24 24" aria-hidden="true">
+        <rect x="2.6" y="4.6" width="18.8" height="14.8" rx="2.4" />
+        <path d="m3.6 7.2 8.4 5.9 8.4-5.9" />
       </svg>
     )
   }
@@ -164,15 +182,23 @@ const roles = [
 
 const projects: Project[] = [
   {
-    number: '01',
-    title: 'Mobile work order application',
-    client: 'John Deere · Microsoft Dynamics 365 CRM',
+    kind: 'Client delivery',
+    title: 'Unified Job Search Application',
+    client: 'John Deere · Dynamics 365 Field Service',
     description:
-      'Designed and built a mobile-friendly React application backed by an Azure Functions API exposed through Azure API Management. The backend used user selections to query multiple external APIs and databases, normalize the returned data, and generate the appropriate Dynamics 365 work orders while minimizing clicks for clear, low-friction use.',
-    tags: ['React', 'Azure Functions', 'Azure API Management', 'API integrations', 'Data normalization', 'Responsive UI'],
+      'Designed and built a production React and TypeScript application embedded in Dynamics 365 Field Service that unifies service-job search across five internal and third-party sources, replacing a legacy single-source tool. A pluggable source-strategy registry lets new backends be added without touching the UI, store, or orchestration layers, while composite priority-paginated infinite search fuses cursor-based and page-based results into one ranked grid. Six typed Dataverse service actions power job and checklist detail retrieval, part suggestions, ML-based labor-hour estimates, and a full submission pipeline with per-job error isolation and partial-success reporting.',
+    tags: ['React 19', 'TypeScript', 'Fluent UI', 'TanStack Query', 'Zustand', 'Dataverse Web API'],
   },
   {
-    number: '02',
+    kind: 'Client delivery',
+    title: 'Work Order Segment Review Application',
+    client: 'John Deere · Dynamics 365 Field Service',
+    description:
+      'Built a production work-in-progress review application that gives service managers a single screen to review, edit, and price every segment of a work order, replacing several legacy form-based controls. A master-detail layout pairs a segment grid with persisted, user-customizable column layouts above tabs for labor, parts, pricing, notes, and documents. Re-engineered pricing logic reaches feature parity with the legacy control while coexisting with its server-side plugins, and a Zustand buffering layer keeps unsaved edits intact across tab and segment switches before reconciling with server state on save.',
+    tags: ['React', 'TypeScript', 'Fluent UI', 'TanStack Query', 'Zustand', 'Vitest'],
+  },
+  {
+    kind: 'Product platform',
     title: 'Dynamics 365 Field Service Schedule Board',
     client: 'Microsoft · Global enterprise platform',
     description:
@@ -187,15 +213,7 @@ const projects: Project[] = [
     },
   },
   {
-    number: '03',
-    title: 'Semiconductor manufacturing forecasting',
-    client: 'GlobalFoundries · Enterprise delivery',
-    description:
-      'Architected and developed a forecasting framework integrated with existing applications, enabling sales teams to create more informed estimates and timelines while forecasting chip production schedules and manufacturing demand.',
-    tags: ['Solution architecture', 'Systems integration', 'Sales estimation', 'Demand forecasting'],
-  },
-  {
-    number: '04',
+    kind: 'Internal product',
     title: 'SOW forecasting and estimation platform',
     client: 'Hitachi Solutions',
     description:
@@ -203,17 +221,9 @@ const projects: Project[] = [
     tags: ['React', 'SOW estimation', 'Data-intensive UI', 'Product delivery'],
   },
   {
-    number: '05',
-    title: 'Shoppers Drug Mart digital experience',
-    client: 'Loblaw Digital · Front End Developer',
-    description:
-      'Built and maintained reusable React components for Shoppers Drug Mart’s customer-facing platform, delivered responsive and accessible interfaces, and supported its GraphQL middleware layer and Java backend.',
-    tags: ['React', 'GraphQL middleware', 'Java', 'Reusable components', 'Accessible UI'],
-  },
-  {
-    number: '06',
+    kind: 'Independent project',
     title: 'DevIntercept',
-    client: 'Independent project · Developer tooling',
+    client: 'Developer tooling',
     description:
       'Built a Windows desktop tool that improves frontend development workflows by replacing remote browser responses with local or development-server content and supporting Vite HMR, so code changes appear on the fly without full page refreshes.',
     tags: ['C#', '.NET 8', 'WPF', 'Playwright', 'Vite HMR'],
@@ -221,9 +231,9 @@ const projects: Project[] = [
     repositoryPreview: true,
   },
   {
-    number: '07',
+    kind: 'Independent project',
     title: 'Cache',
-    client: 'Independent project · Real-time collaboration',
+    client: 'Real-time collaboration',
     description:
       'Built a no-login, room-based web application for instantly sharing text, links, images, and files between devices or friends. Combined a React and TypeScript client with Socket.IO messaging, an Express API, MongoDB persistence, and generated OpenAPI documentation.',
     tags: ['React', 'TypeScript', 'Socket.IO', 'Express', 'MongoDB', 'OpenAPI'],
@@ -314,7 +324,9 @@ function App() {
           <div className="rail-section credentials">
             <p className="rail-label">Credentials</p>
             <p>5+ years of professional experience</p>
-            <p>University of Toronto · HBSc</p>
+            <p className="credential-highlight">Rising Star Award · Hitachi Solutions</p>
+            <p>University of Toronto · HBSc, Statistics specialist</p>
+            <p>Machine learning and data mining focus</p>
             <p>PL-200 · PL-400 · PL-900 · AZ-900</p>
           </div>
 
@@ -335,6 +347,20 @@ function App() {
                 aria-label="View Christian Sarran on LinkedIn (opens in a new tab)"
               >
                 <Icon name="linkedin" /> LinkedIn
+              </a>
+              <a
+                href="mailto:christian.k.sarran@gmail.com"
+                aria-label="Email Christian Sarran at christian.k.sarran@gmail.com"
+              >
+                <Icon name="mail" /> Email
+              </a>
+              <a
+                href={`${import.meta.env.BASE_URL}Christian-Sarran-Resume.pdf`}
+                target="_blank"
+                rel="noreferrer"
+                aria-label="View Christian Sarran's resume as a PDF (opens in a new tab)"
+              >
+                <Icon name="document" /> Resume
               </a>
             </div>
             <button
@@ -386,7 +412,7 @@ function App() {
               </div>
             </section>
 
-            <section className="content-section" id="experience">
+            <section className="content-section section-experience" id="experience">
               <div className="section-heading">
                 <div>
                   <p className="section-index">01 / Experience</p>
@@ -430,7 +456,7 @@ function App() {
               </div>
             </section>
 
-            <section className="content-section" id="work">
+            <section className="content-section section-work" id="work">
               <div className="section-heading">
                 <div>
                   <p className="section-index">02 / Selected work</p>
@@ -441,10 +467,10 @@ function App() {
 
               <div className="project-grid">
                 {projects.map((project) => (
-                  <article className="project-card" key={project.number}>
+                  <article className="project-card" key={project.title}>
                     <div className="project-meta">
-                      <span>{project.number}</span>
-                      <p>{project.client}</p>
+                      <p className="project-kind">{project.kind}</p>
+                      <p className="project-client">{project.client}</p>
                     </div>
                     {project.image && (
                       <figure className="project-media">
@@ -537,6 +563,14 @@ function App() {
             <div>
               <a href="https://github.com/Chris034" target="_blank" rel="noreferrer">GitHub</a>
               <a href="https://www.linkedin.com/in/christian-sarran-290290140/" target="_blank" rel="noreferrer">LinkedIn</a>
+              <a href="mailto:christian.k.sarran@gmail.com">Email</a>
+              <a
+                href={`${import.meta.env.BASE_URL}Christian-Sarran-Resume.pdf`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Resume (PDF)
+              </a>
               <a href="#top">Back to top ↑</a>
             </div>
           </footer>
