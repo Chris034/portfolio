@@ -117,8 +117,7 @@ svg {
 .eyebrow,
 .section-index,
 .rail-label,
-.company,
-.project-meta {
+.company {
   margin: 0;
   color: var(--accent);
   font: 700 0.7rem/1.25 'Manrope', sans-serif;
@@ -331,7 +330,24 @@ footer {
 
 .content-section {
   padding-block: clamp(3.5rem, 7vw, 6rem);
-  border-top: 1px solid var(--line);
+  border-top: 1px solid var(--line-strong);
+}
+
+.section-index {
+  display: flex;
+  gap: 0.65rem;
+  align-items: center;
+  font-size: 0.66rem;
+  letter-spacing: 0.22em;
+}
+
+.section-index::before {
+  display: block;
+  flex: 0 0 auto;
+  width: 1.75rem;
+  height: 2px;
+  background: currentColor;
+  content: '';
 }
 
 .section-heading {
@@ -357,15 +373,42 @@ footer {
 }
 
 .experience-list {
-  border-bottom: 1px solid var(--line);
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.experience-list::before {
+  position: absolute;
+  top: 0.5rem;
+  bottom: 0.5rem;
+  left: 0;
+  width: 1px;
+  background: var(--line-strong);
+  content: '';
 }
 
 .experience-item {
+  position: relative;
   display: grid;
   grid-template-columns: minmax(145px, 0.3fr) minmax(0, 1fr);
   gap: clamp(1.5rem, 4vw, 4rem);
-  padding: 1.8rem 0;
-  border-top: 1px solid var(--line);
+  padding-bottom: 2.6rem;
+}
+
+.experience-item::before {
+  position: absolute;
+  top: 0.3rem;
+  left: calc(-1.5rem - 4px);
+  width: 9px;
+  height: 9px;
+  border: 1px solid var(--accent);
+  border-radius: 50%;
+  background: var(--bg);
+  content: '';
+}
+
+.experience-item:last-child {
+  padding-bottom: 0;
 }
 
 .experience-meta {
@@ -395,7 +438,7 @@ footer {
 
 .experience-item h3 {
   margin: 0.35rem 0 0.65rem;
-  font: 600 clamp(1.25rem, 2vw, 1.75rem)/1.2 'Manrope', sans-serif;
+  font: 600 clamp(1.15rem, 1.8vw, 1.5rem)/1.2 'Manrope', sans-serif;
   letter-spacing: -0.03em;
 }
 
@@ -477,39 +520,56 @@ footer {
 .project-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.85rem;
+  gap: clamp(1.1rem, 2.4vw, 1.75rem);
 }
 
 .project-card {
   display: flex;
   flex-direction: column;
   min-height: 310px;
-  padding: clamp(1.35rem, 3vw, 2rem);
-  border: 1px solid var(--line);
+  padding: clamp(1.6rem, 3vw, 2.4rem);
+  border: 1px solid var(--line-strong);
   border-radius: 1rem;
   background:
     linear-gradient(145deg, var(--accent-soft), transparent 42%),
-    var(--surface);
+    var(--surface-raised);
   transition: border-color 160ms ease, transform 160ms ease, box-shadow 160ms ease;
 }
 
 .project-card:hover {
-  border-color: var(--line-strong);
+  border-color: var(--accent);
   box-shadow: var(--shadow);
   transform: translateY(-3px);
 }
 
 .project-meta {
   display: flex;
-  justify-content: space-between;
   gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 1.1rem;
+  border-bottom: 1px solid var(--line);
 }
 
-.project-meta p {
+.project-kind {
   margin: 0;
-  color: var(--subtle);
-  font: inherit;
+  padding: 0.3rem 0.6rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 0.4rem;
+  color: var(--accent);
+  background: var(--accent-soft);
+  font: 700 0.6rem/1.2 'Manrope', sans-serif;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.project-client {
+  margin: 0;
+  color: var(--muted);
+  font: 500 0.66rem/1.4 'Manrope', sans-serif;
+  letter-spacing: 0.07em;
   text-align: right;
+  text-transform: uppercase;
 }
 
 .project-media {
@@ -550,9 +610,9 @@ footer {
 }
 
 .project-card h3 {
-  margin: 2rem 0 0.8rem;
-  font: 600 clamp(1.45rem, 2.5vw, 2.1rem)/1.05 'Manrope', sans-serif;
-  letter-spacing: -0.045em;
+  margin: 1.5rem 0 0.8rem;
+  font: 600 clamp(1.25rem, 2vw, 1.65rem)/1.15 'Manrope', sans-serif;
+  letter-spacing: -0.035em;
 }
 
 .project-media + h3 {
@@ -570,7 +630,7 @@ footer {
   border-radius: 0.75rem;
   background:
     linear-gradient(135deg, var(--accent-soft), transparent 70%),
-    var(--surface-raised);
+    var(--surface);
   text-decoration: none;
   transition: border-color 160ms ease, transform 160ms ease;
 }
@@ -924,7 +984,7 @@ footer a:hover {
     flex-direction: column;
   }
 
-  .project-meta p {
+  .project-client {
     text-align: left;
   }
 }

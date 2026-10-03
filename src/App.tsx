@@ -4,7 +4,7 @@ import './App.css'
 type Theme = 'light' | 'dark'
 
 type Project = {
-  number: string
+  kind: string
   title: string
   client: string
   description: string
@@ -164,15 +164,23 @@ const roles = [
 
 const projects: Project[] = [
   {
-    number: '01',
-    title: 'Mobile work order application',
-    client: 'John Deere · Microsoft Dynamics 365 CRM',
+    kind: 'Client delivery',
+    title: 'Unified Job Search Application',
+    client: 'Dynamics 365 Field Service',
     description:
-      'Designed and built a mobile-friendly React application backed by an Azure Functions API exposed through Azure API Management. The backend used user selections to query multiple external APIs and databases, normalize the returned data, and generate the appropriate Dynamics 365 work orders while minimizing clicks for clear, low-friction use.',
-    tags: ['React', 'Azure Functions', 'Azure API Management', 'API integrations', 'Data normalization', 'Responsive UI'],
+      'Designed and built a production React and TypeScript application embedded in Dynamics 365 Field Service that unifies service-job search across five internal and third-party sources, replacing a legacy single-source tool. A pluggable source-strategy registry lets new backends be added without touching the UI, store, or orchestration layers, while composite priority-paginated infinite search fuses cursor-based and page-based results into one ranked grid. Six typed Dataverse service actions power job and checklist detail retrieval, part suggestions, ML-based labor-hour estimates, and a full submission pipeline with per-job error isolation and partial-success reporting.',
+    tags: ['React 19', 'TypeScript', 'Fluent UI', 'TanStack Query', 'Zustand', 'Dataverse Web API'],
   },
   {
-    number: '02',
+    kind: 'Client delivery',
+    title: 'Work Order Segment Review Application',
+    client: 'Dynamics 365 Field Service',
+    description:
+      'Built a production work-in-progress review application that gives service managers a single screen to review, edit, and price every segment of a work order, replacing several legacy form-based controls. A master-detail layout pairs a segment grid with persisted, user-customizable column layouts above tabs for labor, parts, pricing, notes, and documents. Re-engineered pricing logic reaches feature parity with the legacy control while coexisting with its server-side plugins, and a Zustand buffering layer keeps unsaved edits intact across tab and segment switches before reconciling with server state on save.',
+    tags: ['React', 'TypeScript', 'Fluent UI', 'TanStack Query', 'Zustand', 'Vitest'],
+  },
+  {
+    kind: 'Product platform',
     title: 'Dynamics 365 Field Service Schedule Board',
     client: 'Microsoft · Global enterprise platform',
     description:
@@ -187,15 +195,15 @@ const projects: Project[] = [
     },
   },
   {
-    number: '03',
+    kind: 'Enterprise delivery',
     title: 'Semiconductor manufacturing forecasting',
-    client: 'GlobalFoundries · Enterprise delivery',
+    client: 'GlobalFoundries',
     description:
       'Architected and developed a forecasting framework integrated with existing applications, enabling sales teams to create more informed estimates and timelines while forecasting chip production schedules and manufacturing demand.',
     tags: ['Solution architecture', 'Systems integration', 'Sales estimation', 'Demand forecasting'],
   },
   {
-    number: '04',
+    kind: 'Internal product',
     title: 'SOW forecasting and estimation platform',
     client: 'Hitachi Solutions',
     description:
@@ -203,7 +211,7 @@ const projects: Project[] = [
     tags: ['React', 'SOW estimation', 'Data-intensive UI', 'Product delivery'],
   },
   {
-    number: '05',
+    kind: 'Consumer platform',
     title: 'Shoppers Drug Mart digital experience',
     client: 'Loblaw Digital · Front End Developer',
     description:
@@ -211,9 +219,9 @@ const projects: Project[] = [
     tags: ['React', 'GraphQL middleware', 'Java', 'Reusable components', 'Accessible UI'],
   },
   {
-    number: '06',
+    kind: 'Independent project',
     title: 'DevIntercept',
-    client: 'Independent project · Developer tooling',
+    client: 'Developer tooling',
     description:
       'Built a Windows desktop tool that improves frontend development workflows by replacing remote browser responses with local or development-server content and supporting Vite HMR, so code changes appear on the fly without full page refreshes.',
     tags: ['C#', '.NET 8', 'WPF', 'Playwright', 'Vite HMR'],
@@ -221,9 +229,9 @@ const projects: Project[] = [
     repositoryPreview: true,
   },
   {
-    number: '07',
+    kind: 'Independent project',
     title: 'Cache',
-    client: 'Independent project · Real-time collaboration',
+    client: 'Real-time collaboration',
     description:
       'Built a no-login, room-based web application for instantly sharing text, links, images, and files between devices or friends. Combined a React and TypeScript client with Socket.IO messaging, an Express API, MongoDB persistence, and generated OpenAPI documentation.',
     tags: ['React', 'TypeScript', 'Socket.IO', 'Express', 'MongoDB', 'OpenAPI'],
@@ -386,7 +394,7 @@ function App() {
               </div>
             </section>
 
-            <section className="content-section" id="experience">
+            <section className="content-section section-experience" id="experience">
               <div className="section-heading">
                 <div>
                   <p className="section-index">01 / Experience</p>
@@ -430,7 +438,7 @@ function App() {
               </div>
             </section>
 
-            <section className="content-section" id="work">
+            <section className="content-section section-work" id="work">
               <div className="section-heading">
                 <div>
                   <p className="section-index">02 / Selected work</p>
@@ -441,10 +449,10 @@ function App() {
 
               <div className="project-grid">
                 {projects.map((project) => (
-                  <article className="project-card" key={project.number}>
+                  <article className="project-card" key={project.title}>
                     <div className="project-meta">
-                      <span>{project.number}</span>
-                      <p>{project.client}</p>
+                      <p className="project-kind">{project.kind}</p>
+                      <p className="project-client">{project.client}</p>
                     </div>
                     {project.image && (
                       <figure className="project-media">
